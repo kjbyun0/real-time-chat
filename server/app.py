@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
+from flask_cors import CORS
 from models import db, User, Message
 
 app = Flask(__name__)
@@ -13,6 +14,7 @@ db.init_app(app)
 
 api = Api(app)
 
+CORS(app)
 
 @app.route('/')
 def index():
@@ -20,9 +22,8 @@ def index():
 
 class Messages(Resource):
     def get(self):
-        messages = [message.to_dict() for message in Message.query.filter.all()]
-        print(messages)
-        return make_response(messages, 200)
+        messages = [message.to_dict() for message in Message.query.all()]
+        return make_response(jsonify(messages), 200)
     
 
 api.add_resource(Messages, '/messages')

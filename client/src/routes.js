@@ -1,5 +1,5 @@
 import App from './pages/App';
-import DirectMsg from './pages/DirectMsg';
+import ChatRoom from './pages/ChatRoom';
 
 const routes = [
     {
@@ -9,7 +9,7 @@ const routes = [
         children: [
             {
                 path: '/',
-                element: <DirectMsg />,
+                element: <ChatRoom />,
 
             },
         ],

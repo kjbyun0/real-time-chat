@@ -3,14 +3,14 @@ import { Outlet } from 'react-router-dom';
 import ChatRoom from './ChatRoom';
 
 function App() {
-  const [messages, setMessages] = useState([]);
+  const [msgs, setMsgs] = useState([]);
+  console.log('In App, msgs: ', msgs);
 
   useEffect(() => {
     fetch('http://localhost:5555/messages')
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
-      setMessages(data);
+      setMsgs(data);
     });
   }, []);
 
@@ -20,7 +20,10 @@ function App() {
         <h1>Header</h1>
       </header>
       <main>
-        <Outlet context={messages} />
+        <Outlet context={{
+          msgs: msgs,
+          onSetMsgs: setMsgs,
+        }} />
       </main>
     </div>
   );

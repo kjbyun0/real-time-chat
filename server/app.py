@@ -25,6 +25,22 @@ class Messages(Resource):
         messages = [message.to_dict() for message in Message.query.all()]
         return make_response(jsonify(messages), 200)
     
+    def post(self):
+        req = request.get_json()
+        try:
+            new_msg = Message(
+                body = req.get('body'),
+                user_id = req.get('user_id')
+            )
+            db.session.add(new_msg)
+            db.session.commit()
+        except Exception as exc:
+            return make_response({
+                'message': f'{exc}'
+            }, 400)
+
+        return make_response(jsonify(new_msg.to_dict()), 201)
+    
 
 api.add_resource(Messages, '/messages')
 

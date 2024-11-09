@@ -1,10 +1,12 @@
-import PrevMessages from '../components/PrevMessages';
+import PrevMsgs from '../components/PrevMsgs';
+import MsgComposer from '../components/MsgComposer';
 
 function ChatRoom() {
     return (
         <div>
             <h1>Chat Room</h1>
-            <PrevMessages />
+            <PrevMsgs />
+            <MsgComposer />
         </div>
     );
 }

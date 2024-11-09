@@ -20,7 +20,7 @@ if __name__ == '__main__':
         for i in range(30):
             messages.append(Message(
                 body = f'sentense - {i}',
-                owner = users[i % 10]
+                user = users[i % 10]
             ))
         db.session.add_all(messages)
 
